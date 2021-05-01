@@ -13,4 +13,5 @@ public interface PropertyEntityService {
 
     public void deleteById(int theId);
 
+//    List<PropertyEntity> getCategoryProperties(int categoryId);
 }

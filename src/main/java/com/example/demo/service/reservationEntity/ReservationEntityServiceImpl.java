@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class ReservationEntityServiceImpl implements ReservationEntityService {
+
     private ReservationEntityRepository reservationEntityRepository;
     private PropertyEntityRepository propertyEntityRepository;
 

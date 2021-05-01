@@ -2,11 +2,11 @@ package com.example.demo.entity;
 
 import com.example.demo.enumerations.PropertyStatus;
 import com.example.demo.enumerations.Type;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -44,6 +44,22 @@ public class PropertyEntity {
         private String location;
 
         private boolean Featured;
+
+
+
+
+
+        @ManyToOne(cascade = CascadeType.ALL)
+        @ToString.Exclude
+        @EqualsAndHashCode.Exclude
+@JoinColumn(name = "categoryId",insertable = false,updatable = false)
+        CategoryEntity categoryEntity;
+
+
+
+
+
+
 
 }
 
