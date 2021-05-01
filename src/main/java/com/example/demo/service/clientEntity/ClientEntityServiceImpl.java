@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class ClientEntityServiceImpl implements ClientEntityService {
+
     private ClientEntityRepository clientEntityRepository;
 
     @Autowired
