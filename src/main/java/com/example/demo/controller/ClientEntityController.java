@@ -44,7 +44,7 @@ public class ClientEntityController {
         return reservationEntityService.getClientReservations(clientId);
     }
 
-    @PostMapping("/clients")
+    @PostMapping("/clients/add")
     public ClientEntity addClient(@RequestBody @Valid ClientEntity clientEntity) {
         clientEntityService.save(clientEntity);
 
