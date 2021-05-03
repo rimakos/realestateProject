@@ -2,7 +2,6 @@ package com.example.demo.service.categoryEntity;
 
 import com.example.demo.dao.CategoryEntityRepository;
 import com.example.demo.entity.CategoryEntity;
-import com.example.demo.entity.ClientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

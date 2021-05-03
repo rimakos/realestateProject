@@ -51,11 +51,7 @@ public class PropertyEntity {
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private CategoryEntity categoryEntity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @JoinColumn(name = "reservation_id", insertable = false, updatable = false)
-    private ReservationEntity reservationEntity;
+
 
 }
 
