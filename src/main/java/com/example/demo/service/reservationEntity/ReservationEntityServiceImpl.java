@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationEntityServiceImpl implements ReservationEntityService {
@@ -23,23 +24,28 @@ public class ReservationEntityServiceImpl implements ReservationEntityService {
 
     @Override
     public List<ReservationEntity> findAll() {
-        return null;
+        return reservationEntityRepository.findAll();
     }
 
     @Override
     public ReservationEntity findById(int theId) {
-        return null;
+        return reservationEntityRepository.findById(theId).orElse(null);
     }
 
     @Override
     public void save(ReservationEntity reservationEntity) {
-
+reservationEntityRepository.save(reservationEntity);
     }
 
     @Override
-    public void deleteById(int theId) {
-
-    }
+    public String deleteById(int theId) {
+        Optional<ReservationEntity> reservationEntity = reservationEntityRepository.findById(theId);
+        if (reservationEntity.isPresent()) {
+            reservationEntityRepository.deleteById(theId);
+            return "The Reservation with id " + theId + " is deleted";
+        } else {
+            return "The id " + theId + " you enter to delete does not exist";
+        }}
 
     @Override
     public List<ReservationEntity> getClientReservations(int clientId) {

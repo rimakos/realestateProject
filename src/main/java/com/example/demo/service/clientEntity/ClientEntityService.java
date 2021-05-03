@@ -6,6 +6,7 @@ import com.example.demo.entity.ClientEntity;
 import java.util.List;
 
 public interface ClientEntityService {
+
     public List<ClientEntity> findAll();
 
     public ClientEntity findById(int theId);

@@ -17,49 +17,45 @@ import java.util.Set;
 @Table(name = "properties")
 public class PropertyEntity {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-        private String title;
+    private String title;
 
-        private Integer price;
+    private Integer price;
 
-        private String description;
+    private String description;
 
-        @Enumerated(EnumType.STRING)
-        private Type type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
-        private Integer yearBuild;
+    private Integer yearBuild;
 
-        private Integer squareFit;
+    private Integer squareFit;
 
-        private Integer bedroom;
+    private Integer bedroom;
 
-        private Integer bathroom;
+    private Integer bathroom;
 
-        @Enumerated(EnumType.STRING)
-        private PropertyStatus propertyStatus;
+    @Enumerated(EnumType.STRING)
+    private PropertyStatus propertyStatus;
 
-        private String location;
+    private String location;
 
-        private boolean Featured;
+    private boolean Featured;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private CategoryEntity categoryEntity;
 
-
-
-
-        @ManyToOne(cascade = CascadeType.ALL)
-        @ToString.Exclude
-        @EqualsAndHashCode.Exclude
-@JoinColumn(name = "categoryId",insertable = false,updatable = false)
-        CategoryEntity categoryEntity;
-
-
-
-
-
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "reservation_id", insertable = false, updatable = false)
+    private ReservationEntity reservationEntity;
 
 }
 
