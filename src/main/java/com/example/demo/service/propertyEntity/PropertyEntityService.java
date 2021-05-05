@@ -10,7 +10,7 @@ public interface PropertyEntityService {
 
     public PropertyEntity findById(int theId);
 
-    public void save(PropertyEntity propertyEntity);
+    public PropertyEntity save(PropertyEntity propertyEntity);
 
     public String deleteById(int theId);
 

@@ -5,6 +5,7 @@ import com.example.demo.enumerations.Type;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class PropertyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String title;
 
@@ -45,11 +46,13 @@ public class PropertyEntity {
 
     private boolean Featured;
 
+    private Date createdAt;
+
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    @JoinColumn(name = "categoryId", insertable = false, updatable = false)
     private CategoryEntity categoryEntity;
+    private int categoryId;
 
 
 

@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.PropertyEntity;
-import com.example.demo.enumerations.CategoryName;
 import com.example.demo.service.categoryEntity.CategoryEntityService;
 import com.example.demo.service.propertyEntity.PropertyEntityService;
 import com.example.demo.service.reservationEntity.ReservationEntityService;

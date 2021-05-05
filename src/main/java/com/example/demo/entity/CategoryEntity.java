@@ -1,12 +1,9 @@
 package com.example.demo.entity;
 
-import com.example.demo.enumerations.CategoryName;
-import com.example.demo.enumerations.Type;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -19,9 +16,8 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
-    @Enumerated(EnumType.STRING)
-    private CategoryName categoryName;
+    private String categoryName;
 
 }

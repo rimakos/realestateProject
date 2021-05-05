@@ -6,6 +6,7 @@ import com.example.demo.entity.ReservationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +34,20 @@ public class ReservationEntityServiceImpl implements ReservationEntityService {
     }
 
     @Override
-    public void save(ReservationEntity reservationEntity) {
-reservationEntityRepository.save(reservationEntity);
+    public ReservationEntity save(ReservationEntity reservationEntity) {
+        var dbReservationEntity = reservationEntityRepository.findById(reservationEntity.getId());
+        if (dbReservationEntity.isPresent()) {
+            dbReservationEntity.get().setFinalPrice(reservationEntity.getFinalPrice());
+            dbReservationEntity.get().setComment(reservationEntity.getComment());
+            dbReservationEntity.get().setClientId(reservationEntity.getClientId());
+            dbReservationEntity.get().setPropertyId(reservationEntity.getPropertyId());
+            dbReservationEntity.get().setCreatedAt(reservationEntity.getCreatedAt());
+            reservationEntityRepository.save(dbReservationEntity.get());
+        } else {
+            reservationEntity.setCreatedAt(new Date());
+            reservationEntityRepository.save(reservationEntity);
+        }
+        return reservationEntity;
     }
 
     @Override
@@ -45,7 +58,8 @@ reservationEntityRepository.save(reservationEntity);
             return "The Reservation with id " + theId + " is deleted";
         } else {
             return "The id " + theId + " you enter to delete does not exist";
-        }}
+        }
+    }
 
     @Override
     public List<ReservationEntity> getClientReservations(int clientId) {

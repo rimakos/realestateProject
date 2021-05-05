@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -14,23 +15,22 @@ public class ReservationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private Integer finalPrice;
 
     private String comment;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @JoinColumn(name = "client_id", insertable = false, updatable = false)
+    @JoinColumn(name = "clientId", insertable = false, updatable = false)
     private ClientEntity clientEntity;
+    private int clientId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @JoinColumn(name = "property_id", insertable = false, updatable = false)
+    @JoinColumn(name = "propertyId", insertable = false, updatable = false)
     private PropertyEntity propertyEntity;
+    private int propertyId;
+    private Date createdAt;
 
 
 }

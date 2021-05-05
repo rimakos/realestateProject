@@ -9,7 +9,7 @@ public interface ReservationEntityService {
 
     public ReservationEntity findById(int theId);
 
-    public void save(ReservationEntity reservationEntity);
+    public ReservationEntity save(ReservationEntity reservationEntity);
 
     public String deleteById(int theId);
 
