@@ -42,7 +42,7 @@ public class CategoryEntityServiceImpl implements CategoryEntityService {
             categoryEntityRepository.deleteById(theId);
             return "The Category with id " + theId + " is deleted";
         } else {
-            return "The id " + theId + " you enter to delete does not exist";
+            return "The id " + theId + " you entered to delete does not exist";
         }
     }
 }

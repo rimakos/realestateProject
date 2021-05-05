@@ -11,5 +11,5 @@ import java.util.List;
 public interface PropertyEntityRepository extends JpaRepository<PropertyEntity, Integer> {
 
     @Query("select r from ReservationEntity r where r.clientEntity.id=:id")
-    List<ReservationEntity> getClientReservation(@Param("id")int id);
+    List<ReservationEntity> getClientReservations(@Param("id")int id);
 }

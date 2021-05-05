@@ -49,7 +49,7 @@ reservationEntityRepository.save(reservationEntity);
 
     @Override
     public List<ReservationEntity> getClientReservations(int clientId) {
-        return propertyEntityRepository.getClientReservation(clientId);
+        return propertyEntityRepository.getClientReservations(clientId);
     }
 
 
