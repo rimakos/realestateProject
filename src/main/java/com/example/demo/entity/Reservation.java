@@ -24,12 +24,12 @@ public class Reservation {
     private Date createdAt;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "clientId", insertable = false, updatable = false)
     private Client client;
     private int clientId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "propertyId", insertable = false, updatable = false)
     private Property property;
     private int propertyId;

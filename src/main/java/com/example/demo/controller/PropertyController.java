@@ -28,12 +28,12 @@ public class PropertyController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/properties")
+    @GetMapping
     public List<Property> findAll() {
         return propertyService.findAll();
     }
 
-    @GetMapping("/properties/{propertyId}")
+    @GetMapping("/{propertyId}")
     public ResponseEntity getPropertyById(@PathVariable int propertyId) {
 
         Property property = propertyService.findById(propertyId);
@@ -46,9 +46,13 @@ public class PropertyController {
     }
 
 
-    @PostMapping("/properties/add")
+    @PostMapping
     public int addProperty(@RequestBody @Valid SavePropertyRequest request) {
       return   propertyService.save(request);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") int id) {
+        propertyService.deleteById(id);
     }
 }
