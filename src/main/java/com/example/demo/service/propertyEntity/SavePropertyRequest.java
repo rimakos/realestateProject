@@ -1,14 +1,14 @@
-package com.example.demo.entity;
+package com.example.demo.service.propertyEntity;
+
 
 import com.example.demo.enumerations.PropertyStatus;
 import com.example.demo.enumerations.Type;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Data
 @Entity
@@ -16,7 +16,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "properties")
-public class PropertyEntity {
+public class SavePropertyRequest {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,20 +25,20 @@ public class PropertyEntity {
 
     private String title;
 
-    private Integer price;
+    private int price;
 
     private String description;
 
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    private Integer yearBuild;
+    private int yearBuild;
 
-    private Integer squareFit;
+    private int squareFit;
 
-    private Integer bedroom;
+    private int bedroom;
 
-    private Integer bathroom;
+    private int bathroom;
 
     @Enumerated(EnumType.STRING)
     private PropertyStatus propertyStatus;
@@ -46,15 +47,5 @@ public class PropertyEntity {
 
     private boolean Featured;
 
-    private Date createdAt;
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "categoryId", insertable = false, updatable = false)
-    private CategoryEntity categoryEntity;
     private int categoryId;
-
-
-
 }
-

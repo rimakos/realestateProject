@@ -2,13 +2,12 @@ package com.example.demo.service.propertyEntity;
 
 import com.example.demo.dao.CategoryEntityRepository;
 import com.example.demo.dao.PropertyEntityRepository;
-import com.example.demo.entity.PropertyEntity;
+import com.example.demo.entity.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PropertyEntityServiceImpl implements PropertyEntityService {
@@ -24,55 +23,62 @@ public class PropertyEntityServiceImpl implements PropertyEntityService {
     }
 
     @Override
-    public List<PropertyEntity> findAll() {
+    public List<Property> findAll() {
         return propertyEntityRepository.findAll();
     }
 
     @Override
-    public PropertyEntity findById(int theId) {
+    public Property findById(int theId) {
         return propertyEntityRepository.findById(theId).orElse(null);
     }
 
     @Override
-    public PropertyEntity save(PropertyEntity propertyEntity) {
-        var dbPropertyEntity = propertyEntityRepository.findById(propertyEntity.getId());
+    public int save(SavePropertyRequest request) {
+        var dbPropertyEntity = propertyEntityRepository.findById(request.getId());
         if (dbPropertyEntity.isPresent()) {
-            dbPropertyEntity.get().setTitle(propertyEntity.getTitle());
-            dbPropertyEntity.get().setPrice(propertyEntity.getPrice());
-            dbPropertyEntity.get().setDescription(propertyEntity.getDescription());
-            dbPropertyEntity.get().setType(propertyEntity.getType());
-            dbPropertyEntity.get().setYearBuild(propertyEntity.getYearBuild());
-            dbPropertyEntity.get().setSquareFit(propertyEntity.getSquareFit());
-            dbPropertyEntity.get().setBedroom(propertyEntity.getBedroom());
-            dbPropertyEntity.get().setBathroom(propertyEntity.getBathroom());
-            dbPropertyEntity.get().setBathroom(propertyEntity.getBathroom());
-            dbPropertyEntity.get().setPropertyStatus(propertyEntity.getPropertyStatus());
-            dbPropertyEntity.get().setLocation(propertyEntity.getLocation());
-            dbPropertyEntity.get().setCategoryEntity(propertyEntity.getCategoryEntity());
-            dbPropertyEntity.get().setCategoryId(propertyEntity.getCategoryId());
-            dbPropertyEntity.get().setCreatedAt(propertyEntity.getCreatedAt());
-            dbPropertyEntity.get().setFeatured(propertyEntity.isFeatured());
+            dbPropertyEntity.get().setCategoryId(request.getCategoryId());
+            dbPropertyEntity.get().setTitle(request.getTitle());
+            dbPropertyEntity.get().setPrice(request.getPrice());
+            dbPropertyEntity.get().setDescription(request.getDescription());
+            dbPropertyEntity.get().setType(request.getType());
+            dbPropertyEntity.get().setYearBuild(request.getYearBuild());
+            dbPropertyEntity.get().setSquareFit(request.getSquareFit());
+            dbPropertyEntity.get().setBedroom(request.getBedroom());
+            dbPropertyEntity.get().setPropertyStatus(request.getPropertyStatus());
+            dbPropertyEntity.get().setLocation(request.getLocation());
+            dbPropertyEntity.get().setFeatured(request.isFeatured());
             propertyEntityRepository.save(dbPropertyEntity.get());
+            return dbPropertyEntity.get().getId();
         } else {
-            propertyEntity.setCreatedAt(new Date());
-            propertyEntityRepository.save(propertyEntity);
+            var newProperty = Property.builder()
+                    .categoryId(request.getCategoryId())
+                    .propertyStatus(request.getPropertyStatus())
+                    .bathroom(request.getBathroom())
+                    .yearBuild(request.getYearBuild())
+                    .location(request.getLocation())
+                    .price(request.getPrice())
+                    .description(request.getDescription())
+                    .bedroom(request.getBedroom())
+                    .title(request.getTitle())
+                    .type(request.getType())
+                    .Featured(request.isFeatured())
+                    .squareFit(request.getSquareFit())
+                    .createdAt(new Date())
+                    .build();
+
+            propertyEntityRepository.save(newProperty);
+            return newProperty.getId();
         }
-        return propertyEntity;
     }
 
 
     @Override
-    public String deleteById(int theId) {
-        Optional<PropertyEntity> propertyEntity = propertyEntityRepository.findById(theId);
-        if (propertyEntity.isPresent()) {
-            propertyEntityRepository.deleteById(theId);
-            return "The Property with id " + theId + " is deleted";
-        } else {
-            return "The id " + theId + " you enter to delete does not exist";
-        }
+    public void deleteById(int theId) {
+        Property property = propertyEntityRepository.findById(theId).orElseThrow(() -> new IllegalArgumentException());
+        propertyEntityRepository.delete(property);
     }
 //    @Override
-//    public List<PropertyEntity> getCategoryProperties(int categoryId) {
+//    public List<Property> getCategoryProperties(int categoryId) {
 //        return categoryEntityRepository.getCategoryProperties(categoryId);
 //    }
 

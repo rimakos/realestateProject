@@ -11,26 +11,28 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reservations")
-public class ReservationEntity {
+public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Integer finalPrice;
+    private int finalPrice;
 
     private String comment;
 
+    private Date createdAt;
+
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clientId", insertable = false, updatable = false)
-    private ClientEntity clientEntity;
+    private Client client;
     private int clientId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "propertyId", insertable = false, updatable = false)
-    private PropertyEntity propertyEntity;
+    private Property property;
     private int propertyId;
-    private Date createdAt;
 
 
 }

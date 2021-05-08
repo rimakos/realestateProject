@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 
@@ -12,12 +13,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "categories")
-public class CategoryEntity {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String categoryName;
+    private String name;
+
+    private Date createdAt;
 
 }

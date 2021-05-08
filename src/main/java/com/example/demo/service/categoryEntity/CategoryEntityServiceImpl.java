@@ -1,16 +1,16 @@
 package com.example.demo.service.categoryEntity;
 
 import com.example.demo.dao.CategoryEntityRepository;
-import com.example.demo.entity.CategoryEntity;
+import com.example.demo.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CategoryEntityServiceImpl implements CategoryEntityService {
-
 
     public CategoryEntityRepository categoryEntityRepository;
 
@@ -20,29 +20,34 @@ public class CategoryEntityServiceImpl implements CategoryEntityService {
     }
 
     @Override
-    public List<CategoryEntity> findAll() {
+    public List<Category> findAll() {
         return categoryEntityRepository.findAll();
     }
 
     @Override
-    public CategoryEntity findById(int theId) {
+    public Category findById(int theId) {
         return categoryEntityRepository.findById(theId).orElse(null);
     }
 
     @Override
-    public void save(CategoryEntity theCategoryEntity) {
-        categoryEntityRepository.save(theCategoryEntity);
-
+    public int save(SaveCategoryRequest request) {
+        var dbCategory = categoryEntityRepository.findById(request.getId());
+        if (dbCategory.isPresent()) {
+            dbCategory.get().setName(request.getName());
+            categoryEntityRepository.save(dbCategory.get());
+            return dbCategory.get().getId();
+        }
+        var newCategory = Category.builder()
+                .name(request.getName())
+                .createdAt(new Date())
+                .build();
+        categoryEntityRepository.save(newCategory);
+        return newCategory.getId();
     }
 
     @Override
-    public String deleteById(int theId) {
-        Optional<CategoryEntity> categoryEntity = categoryEntityRepository.findById(theId);
-        if (categoryEntity.isPresent()) {
-            categoryEntityRepository.deleteById(theId);
-            return "The Category with id " + theId + " is deleted";
-        } else {
-            return "The id " + theId + " you entered to delete does not exist";
-        }
+    public void deleteById(int theId) {
+        Category categoryEntity = categoryEntityRepository.findById(theId).orElseThrow(() -> new IllegalArgumentException());
+        categoryEntityRepository.delete(categoryEntity);
     }
 }

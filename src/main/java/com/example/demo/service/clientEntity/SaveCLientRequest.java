@@ -1,31 +1,33 @@
-package com.example.demo.entity;
+package com.example.demo.service.clientEntity;
 
-import lombok.*;
-import org.hibernate.annotations.Cascade;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Set;
 
 @Data
-@Entity
 @Builder
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "clients")
-public class ClientEntity {
+public class SaveCLientRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-
     private int id;
 
+    @NotEmpty
     private String name;
 
     @NotEmpty(message = "{email.notEmpty}")
     private String email;
 
     private String phoneNumber;
+
 
 }

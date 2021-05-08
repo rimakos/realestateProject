@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.entity.CategoryEntity;
+import com.example.demo.entity.Category;
 
 import com.example.demo.service.categoryEntity.CategoryEntityService;
+import com.example.demo.service.categoryEntity.SaveCategoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/categories")
 public class CategoryEntityController {
 
     private CategoryEntityService categoryEntityService;
@@ -24,39 +25,27 @@ public class CategoryEntityController {
         this.categoryEntityService = categoryEntityService;
     }
 
-    @GetMapping("/categories")
-    public List<CategoryEntity> findAll() {
+    @GetMapping
+    public List<Category> findAll() {
         return categoryEntityService.findAll();
     }
 
-    @GetMapping("/categories/{categoryId}")
-    public ResponseEntity getCategory(@PathVariable int categoryId) {
-
-        CategoryEntity categoryEntity = categoryEntityService.findById(categoryId);
-        if (categoryEntity == null) {
+    @GetMapping("/{id}")
+    public ResponseEntity getCategory(@PathVariable int id) {
+        Category category = categoryEntityService.findById(id);
+        if (category == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(categoryEntity);
-
+        return ResponseEntity.ok(category);
     }
 
-//    @GetMapping("/categories/properties/{categoryId}")
-//    public List<PropertyEntity> getCategoryProperties(@PathVariable int categoryId) {
-//        return propertyEntityService.getCategoryProperties(categoryId);
-//    }
-
-    @PostMapping("/categories/add")
-    public CategoryEntity addCategory(@RequestBody @Valid CategoryEntity categoryEntity) {
-        categoryEntityService.save(categoryEntity);
-
-        return categoryEntity;
+    @PostMapping
+    public int save(@RequestBody @Valid SaveCategoryRequest request) {
+        return categoryEntityService.save(request);
     }
 
-    @DeleteMapping("/categories/delete/{id}")
-    public String deleteCategory(@PathVariable("id") int id) {
-        String result = categoryEntityService.deleteById(id);
-        return result;
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable("id") int id) {
+        categoryEntityService.deleteById(id);
     }
-
-
 }

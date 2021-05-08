@@ -1,7 +1,7 @@
 package com.example.demo.service.clientEntity;
 
 import com.example.demo.dao.ClientEntityRepository;
-import com.example.demo.entity.ClientEntity;
+import com.example.demo.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +19,33 @@ public class ClientEntityServiceImpl implements ClientEntityService {
     }
 
     @Override
-    public List<ClientEntity> findAll() {
+    public List<Client> findAll() {
         return clientEntityRepository.findAll();
     }
 
     @Override
-    public ClientEntity findById(int theId) {
+    public Client findById(int theId) {
         return clientEntityRepository.findById(theId).orElse(null);
     }
 
     @Override
-    public void save(ClientEntity theClientEntity) {
-        clientEntityRepository.save(theClientEntity);
+    public int save(SaveCLientRequest request) {
+//        clientEntityRepository.save(request);
+        var dbClient = clientEntityRepository.findById(request.getId());
+        if (dbClient.isPresent()) {
+            dbClient.get().setEmail(request.getEmail());
+            dbClient.get().setPhoneNumber(request.getPhoneNumber());
+            dbClient.get().setName(request.getName());
+            clientEntityRepository.save(dbClient.get());
+        }
+        return dbClient.get().getId();
 
     }
 
+
     @Override
     public String deleteById(int theId) {
-        Optional<ClientEntity> clientEntity = clientEntityRepository.findById(theId);
+        Optional<Client> clientEntity = clientEntityRepository.findById(theId);
         if (clientEntity.isPresent()) {
             clientEntityRepository.deleteById(theId);
             return "The Client with id " + theId + " is deleted";

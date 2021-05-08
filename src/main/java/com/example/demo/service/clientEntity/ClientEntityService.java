@@ -1,17 +1,17 @@
 package com.example.demo.service.clientEntity;
 
-import com.example.demo.entity.ClientEntity;
+import com.example.demo.entity.Client;
 
 
 import java.util.List;
 
 public interface ClientEntityService {
 
-    public List<ClientEntity> findAll();
+    public List<Client> findAll();
 
-    public ClientEntity findById(int theId);
+    public Client findById(int theId);
 
-    public void save(ClientEntity clientEntity);
+    public int save(SaveCLientRequest request);
 
     public String deleteById(int theId);
 
