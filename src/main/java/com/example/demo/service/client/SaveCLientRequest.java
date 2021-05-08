@@ -1,4 +1,4 @@
-package com.example.demo.service.clientEntity;
+package com.example.demo.service.client;
 
 
 import lombok.AllArgsConstructor;

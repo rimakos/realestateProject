@@ -3,8 +3,8 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Category;
 
-import com.example.demo.service.categoryEntity.CategoryEntityService;
-import com.example.demo.service.categoryEntity.SaveCategoryRequest;
+import com.example.demo.service.category.CategoryService;
+import com.example.demo.service.category.SaveCategoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,24 +15,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
-public class CategoryEntityController {
+public class CategoryController {
 
-    private CategoryEntityService categoryEntityService;
+    private CategoryService categoryService;
 
     @Autowired
-    public CategoryEntityController
-            (CategoryEntityService categoryEntityService) {
-        this.categoryEntityService = categoryEntityService;
+    public CategoryController
+            (CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @GetMapping
     public List<Category> findAll() {
-        return categoryEntityService.findAll();
+        return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity getCategory(@PathVariable int id) {
-        Category category = categoryEntityService.findById(id);
+        Category category = categoryService.findById(id);
         if (category == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -41,11 +41,11 @@ public class CategoryEntityController {
 
     @PostMapping
     public int save(@RequestBody @Valid SaveCategoryRequest request) {
-        return categoryEntityService.save(request);
+        return categoryService.save(request);
     }
 
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable("id") int id) {
-        categoryEntityService.deleteById(id);
+        categoryService.deleteById(id);
     }
 }

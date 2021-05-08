@@ -1,21 +1,11 @@
-package com.example.demo.service.propertyEntity;
-
-
+package com.example.demo.service.property;
 import com.example.demo.enumerations.PropertyStatus;
 import com.example.demo.enumerations.Type;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "properties")
 public class SavePropertyRequest {
 
 
