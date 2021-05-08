@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "clients")
-public class SaveCLientRequest {
+public class SaveClientRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
