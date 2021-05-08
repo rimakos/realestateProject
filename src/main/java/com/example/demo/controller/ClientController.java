@@ -2,8 +2,8 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.Client;
-import com.example.demo.service.clientEntity.ClientEntityService;
-import com.example.demo.service.clientEntity.SaveCLientRequest;
+import com.example.demo.service.client.ClientEntityService;
+import com.example.demo.service.client.SaveCLientRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clients")
-public class ClientEntityController {
+public class ClientController {
 
     private ClientEntityService clientEntityService;
 
     @Autowired
-    public ClientEntityController(ClientEntityService clientEntityService) {
+    public ClientController(ClientEntityService clientEntityService) {
         this.clientEntityService = clientEntityService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Client> findAll() {
         return clientEntityService.findAll();
     }
@@ -39,18 +39,15 @@ public class ClientEntityController {
     }
 
 
-    @PostMapping("/clients")
+    @PostMapping
     public int addClient(@RequestBody SaveCLientRequest request) {
         clientEntityService.save(request);
 
         return clientEntityService.save(request);
     }
 
-    @DeleteMapping("/clients/delete/{id}")
-    public String deleteClient(@PathVariable("id") int id) {
-        String result = clientEntityService.deleteById(id);
-        return result;
+    @DeleteMapping("/{id}")
+    public void deleteClient(@PathVariable("id") int id) {
+        clientEntityService.deleteById(id);
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.example.demo.service.categoryEntity;
+package com.example.demo.service.category;
 
 import lombok.Data;
 @Data

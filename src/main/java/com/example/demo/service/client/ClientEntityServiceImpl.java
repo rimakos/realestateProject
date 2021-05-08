@@ -1,12 +1,12 @@
-package com.example.demo.service.clientEntity;
+package com.example.demo.service.client;
 
 import com.example.demo.dao.ClientEntityRepository;
 import com.example.demo.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientEntityServiceImpl implements ClientEntityService {
@@ -30,28 +30,31 @@ public class ClientEntityServiceImpl implements ClientEntityService {
 
     @Override
     public int save(SaveCLientRequest request) {
-//        clientEntityRepository.save(request);
         var dbClient = clientEntityRepository.findById(request.getId());
         if (dbClient.isPresent()) {
             dbClient.get().setEmail(request.getEmail());
             dbClient.get().setPhoneNumber(request.getPhoneNumber());
             dbClient.get().setName(request.getName());
             clientEntityRepository.save(dbClient.get());
+            return dbClient.get().getId();
         }
-        return dbClient.get().getId();
+        var newClient = Client.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .phoneNumber(request.getPhoneNumber())
+                .createdAt(new Date())
+                .build();
+        clientEntityRepository.save(newClient);
+        return newClient.getId();
 
     }
 
 
     @Override
-    public String deleteById(int theId) {
-        Optional<Client> clientEntity = clientEntityRepository.findById(theId);
-        if (clientEntity.isPresent()) {
-            clientEntityRepository.deleteById(theId);
-            return "The Client with id " + theId + " is deleted";
-        } else {
-            return "The id " + theId + " you enter to delete does not exist";
-        }
+    public void deleteById(int theId) {
+        Client client = clientEntityRepository.findById(theId).orElseThrow(() -> new IllegalArgumentException());
+        clientEntityRepository.delete(client);
     }
+
 
 }
