@@ -49,7 +49,7 @@ public class Property {
     private int categoryId;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "categoryId", insertable = false, updatable = false)
     private Category category;
 

@@ -5,7 +5,7 @@ import com.example.demo.entity.Category;
 import java.util.List;
 
 public interface CategoryService {
-    public List<Category> findAll();
+     List<Category> findAll();
 
      Category findById(int theId);
 

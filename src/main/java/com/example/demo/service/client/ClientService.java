@@ -5,13 +5,13 @@ import com.example.demo.entity.Client;
 
 import java.util.List;
 
-public interface ClientEntityService {
+public interface ClientService {
 
      List<Client> findAll();
 
      Client findById(int theId);
 
-     int save(SaveCLientRequest request);
+     int save(SaveClientRequest request);
 
      void deleteById(int theId);
 

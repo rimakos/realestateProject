@@ -8,9 +8,6 @@ import javax.persistence.*;
 @Data
 public class SavePropertyRequest {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
