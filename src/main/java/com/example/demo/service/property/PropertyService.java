@@ -8,6 +8,8 @@ public interface PropertyService {
 
     List<Property> findAll();
 
+    List<Property> findPropertiesByCategory(int categoryId);
+
     Property findById(int theId);
 
     int save(SavePropertyRequest request);
