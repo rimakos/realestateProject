@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.Property;
+import com.example.demo.enumerations.PropertyStatus;
 import com.example.demo.service.category.CategoryService;
 import com.example.demo.service.property.PropertyService;
 import com.example.demo.service.property.SavePropertyRequest;
@@ -45,6 +46,13 @@ public class PropertyController {
     public List<Property> propertiesByCategory(@PathVariable int categoryId){
         return propertyService.findPropertiesByCategory(categoryId);
     }
+
+    @GetMapping("/byStatus/{status}")
+    public List<Property> propertiesByStatus(@PathVariable PropertyStatus status){
+        return propertyService.findPropertiesByStatus(status);
+    }
+
+
 
     @PostMapping
     public int addProperty(@RequestBody @Valid SavePropertyRequest request) {

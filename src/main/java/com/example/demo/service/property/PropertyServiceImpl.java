@@ -3,6 +3,7 @@ package com.example.demo.service.property;
 import com.example.demo.dao.CategoryRepository;
 import com.example.demo.dao.PropertyRepository;
 import com.example.demo.entity.Property;
+import com.example.demo.enumerations.PropertyStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,11 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<Property> findPropertiesByCategory(int categoryId) {
         return propertyRepository.findPropertiesByCategory(categoryId);
+    }
+
+    @Override
+    public List <Property> findPropertiesByStatus(PropertyStatus status) {
+        return propertyRepository.findPropertiesByStatus(status);
     }
 
     @Override
