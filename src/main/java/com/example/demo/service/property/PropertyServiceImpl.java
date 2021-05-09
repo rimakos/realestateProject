@@ -28,6 +28,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public List<Property> findPropertiesByCategory(int categoryId) {
+        return propertyRepository.findPropertiesByCategory(categoryId);
+    }
+
+    @Override
     public Property findById(int theId) {
         return propertyRepository.findById(theId).orElse(null);
     }

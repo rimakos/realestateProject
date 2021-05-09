@@ -27,12 +27,10 @@ public class PropertyController {
         this.propertyService = propertyService;
         this.categoryService = categoryService;
     }
-
     @GetMapping
     public List<Property> findAll() {
         return propertyService.findAll();
     }
-
     @GetMapping("/{propertyId}")
     public ResponseEntity getPropertyById(@PathVariable int propertyId) {
 
@@ -40,17 +38,18 @@ public class PropertyController {
         if (property == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-
         return ResponseEntity.ok(property);
-
     }
 
+    @GetMapping("/byCategory/{categoryId}")
+    public List<Property> propertiesByCategory(@PathVariable int categoryId){
+        return propertyService.findPropertiesByCategory(categoryId);
+    }
 
     @PostMapping
     public int addProperty(@RequestBody @Valid SavePropertyRequest request) {
       return   propertyService.save(request);
     }
-
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         propertyService.deleteById(id);
