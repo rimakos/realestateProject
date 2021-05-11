@@ -32,7 +32,7 @@ public class SavePropertyRequest {
 
     private String location;
 
-    private boolean Featured;
+    private boolean featured;
 
     private int categoryId;
 }
