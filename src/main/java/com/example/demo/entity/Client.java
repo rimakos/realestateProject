@@ -28,6 +28,6 @@ public class Client {
 
     private String phoneNumber;
 
-    private Date createdAt;
+    private Date createdAt= new Date();
 
 }

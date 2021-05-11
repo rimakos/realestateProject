@@ -1,24 +1,58 @@
 package com.example.demo.service.reservation;
 
+import com.example.demo.dao.ClientRepository;
 import com.example.demo.dao.ReservationRepository;
+import com.example.demo.entity.Client;
+import com.example.demo.entity.Property;
 import com.example.demo.entity.Reservation;
+import com.example.demo.service.client.SaveClientRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
     public ReservationRepository reservationRepository;
+    public ClientRepository clientRepository;
 
     @Autowired
-    public ReservationServiceImpl(ReservationRepository theReservationRepository) {
+    public ReservationServiceImpl(ClientRepository theClientRepository, ReservationRepository theReservationRepository) {
         reservationRepository = theReservationRepository;
+        clientRepository = theClientRepository;
     }
+
     @Override
+    @Transactional
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
+    }
+
+
+    public int save(SaveNewClientReservationDTO request) {
+
+        Client newClient = new Client();
+        newClient.setId(request.getClient().getId());
+        newClient.setName(request.getClientName());
+        newClient.setEmail(request.getClientEmail());
+        newClient.setPhoneNumber(request.getPhoneNumber());
+        newClient.getCreatedAt();
+        clientRepository.save(newClient);
+
+        Reservation newReservation = new Reservation();
+        newReservation.setFinalPrice(request.getFinalPrice());
+        newReservation.setClientId(newClient.getId());
+        newReservation.setPropertyId(request.getPropertyId());
+        newReservation.setCreatedAt(new Date());
+
+        reservationRepository.save(newReservation);
+
+        return newClient.getId();
+
+
     }
 
 //

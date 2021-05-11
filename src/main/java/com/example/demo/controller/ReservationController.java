@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Reservation;
+import com.example.demo.service.property.SavePropertyRequest;
 import com.example.demo.service.reservation.ReservationService;
+import com.example.demo.service.reservation.SaveNewClientReservationDTO;
 import com.example.demo.service.reservation.SaveReservationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +28,10 @@ public class ReservationController{
     public List<Reservation> findAll() {
         return reservationService.findAll();
     }
-
+    @PostMapping("/newreservation")
+    public int addReservation(@RequestBody @Valid SaveNewClientReservationDTO request) {
+        return   reservationService.save(request);
+    }
 //    @GetMapping("/{id}")
 //    public ResponseEntity getReservation(@PathVariable int id) {
 //       Reservation reservation= reservationService.findById(id);
