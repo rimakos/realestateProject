@@ -34,7 +34,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List <Property> findPropertiesByStatus(PropertyStatus status) {
+    public List<Property> findPropertiesByStatus(PropertyStatus status) {
         return propertyRepository.findPropertiesByStatus(status);
     }
 
@@ -58,6 +58,8 @@ public class PropertyServiceImpl implements PropertyService {
             dbPropertyEntity.get().setPropertyStatus(request.getPropertyStatus());
             dbPropertyEntity.get().setLocation(request.getLocation());
             dbPropertyEntity.get().setFeatured(request.isFeatured());
+            dbPropertyEntity.get().setPhoto(request.getPhoto());
+
             propertyRepository.save(dbPropertyEntity.get());
             return dbPropertyEntity.get().getId();
         }
@@ -74,6 +76,7 @@ public class PropertyServiceImpl implements PropertyService {
                 .type(request.getType())
                 .Featured(request.isFeatured())
                 .squareFit(request.getSquareFit())
+                .photo(request.getPhoto())
                 .createdAt(new Date())
                 .build();
 
