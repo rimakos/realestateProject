@@ -1,4 +1,5 @@
 package com.example.demo.service.property;
+
 import com.example.demo.enumerations.PropertyStatus;
 import com.example.demo.enumerations.Type;
 import lombok.Data;
@@ -35,4 +36,6 @@ public class SavePropertyRequest {
     private boolean featured;
 
     private int categoryId;
+
+    private String photo;
 }

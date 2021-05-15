@@ -48,11 +48,11 @@ public class Property {
 
     private int categoryId;
 
+    private String photo;
 
     @ManyToOne
     @JoinColumn(name = "categoryId", insertable = false, updatable = false)
     private Category category;
-
 
 
 }
