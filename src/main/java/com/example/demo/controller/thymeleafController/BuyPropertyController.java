@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.thymeleafController;
 
 import com.example.demo.entity.Property;
 import com.example.demo.enumerations.PropertyStatus;

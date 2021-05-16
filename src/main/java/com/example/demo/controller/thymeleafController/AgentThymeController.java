@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.thymeleafController;
 
 import com.example.demo.service.agent.AgentService;
 import org.springframework.stereotype.Controller;
