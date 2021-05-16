@@ -27,12 +27,6 @@
 
 </head>
 <body>
-
-<!--<p th:text="${helloMsg}"></p>-->
-<!--<P th:if="isSunny">Today is Sunny</P>-->
-<!--<P th:if="!isSunny">Today is Raining</P>-->
-<!--<p th:each="elem : ${fruits}" th:text="${elem}"></p>-->
-
 <div class="site-loader"></div>
 
 <div class="site-wrap">
@@ -50,7 +44,7 @@
         <div class="container py-1">
             <div class="row align-items-center">
                 <div class="col-8 col-md-8 col-lg-4">
-                    <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Homeland<span
+                    <h1 class="mb-0"><a href="/" class="text-white h2 mb-0"><strong>Homeland<span
                             class="text-danger">.</span></strong></a></h1>
                 </div>
                 <div class="col-4 col-md-4 col-lg-8">
@@ -62,10 +56,10 @@
 
                         <ul class="site-menu js-clone-nav d-none d-lg-block">
                             <li class="active">
-                                <a href="index.html">Home</a>
+                                <a href="/">Home</a>
                             </li>
-                            <li><a href="buy.html">Buy</a></li>
-                            <li><a href="rent.html">Rent</a></li>
+                            <li><a href="/buy">Buy</a></li>
+                            <li><a href="/rent">Rent</a></li>
                             <li class="has-children">
                                 <a href="properties.html">Properties</a>
                                 <ul class="dropdown arrow-top">
@@ -95,24 +89,21 @@
     </div>
 </div>
 
-<div th:each="elem : ${banners}" class="slide-one-item home-slider owl-carousel">
 
-    <div>
-    <img th:src="'/api/files/'+${elem.photo}" alt="Image" class="img-fluid">
-    </div>
-    alt="Image" > >
-    <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-10">
+<div class="slide-one-item home-slider owl-carousel">
+
+    <div th:each="elem : ${banners}" class="site-blocks-cover overlay"
+         th:style="'background-image:url(/api/files/' + ${elem.photo} + ');'"
+         data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row align-items-center justify-content-center text-center">
+                <div class="col-md-10">
+                    <h1 class="mb-2" th:text="${elem.name}"></h1>
+                </div>
             </div>
         </div>
     </div>
-    <span th:if="elem.name" class="offer-type bg-success"></span>
-
 </div>
-</div>
-
-</div>>
 <div class="site-section site-section-sm pb-0">
     <div class="container">
         <div class="row">
@@ -236,19 +227,7 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="site-pagination">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <span>...</span>
-                    <a href="#">10</a>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 </div>
