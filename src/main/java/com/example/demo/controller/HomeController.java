@@ -23,9 +23,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(final ModelMap modelMap) {
-        modelMap.addAttribute("helloMsg", "hello in thymeleaf ");
-//        modelMap.addAttribute("isSunny", true);
-//        modelMap.addAttribute("fruits", Arrays.asList("Apple", "Orange", "Banana", "cherry"));
         var properties = this.propertyService.findAll();
         modelMap.addAttribute("properties", properties);
 
