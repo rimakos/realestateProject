@@ -102,82 +102,35 @@
   </div>
 </div>
 
-<div class="site-section site-section-sm bg-light">
-  <div class="container">
+<h2>Our Agents</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero magnam officiis ipsa eum pariatur labore fugit amet eaque iure vitae, repellendus laborum in modi reiciendis quis! Optio minima quibusdam, laboriosam.</p>
+</div>
+</div>
+</div>
+<div class="row">
+  <div th:each="elem : ${agents}" class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+    <div class="team-member">
 
-    <div class="row mb-5">
-      <div th:each="elem : ${agents}" class="col-md-6 col-lg-4 mb-4">
-        <div class="property-entry h-100">
-          <a href="property-details.html" class="property-thumbnail">
-            <div class="offer-type-wrap">
-            </div>
-            <img th:src="'/api/files/'+${elem.photo}" alt="Image" class="img-fluid">
-          </a>
-          <div class="p-4 property-body">
-            <a href="#" class="property-favorite">
-              <span class="icon-heart-o"></span>
-            </a>
-            <h2 class="property-title">
-              <a href="property-details.html" th:text="${elem.name}"></a>
-            </h2>
-            <span class="property-location d-block mb-3">
-                            <span class="property-icon icon-room"></span>
-                            <span th:text="${elem.bio}">
-                            </span>
-                        </span>
-          </div>
-        </div>
+      <img th:src="'/api/files/'+${elem.photo}" alt="Image" class="img-fluid">
+
+      <div class="text">
+
+        <h2 class="mb-2 font-weight-light text-black h4" th:text="${elem.name}"></h2>
+        <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+        <p th:text="${elem.bio}"><p>
+        <a href="#" class="text-black p-2"><span class="icon-facebook"></span></a>
+        <a href="#" class="text-black p-2"><span class="icon-twitter"></span></a>
+        <a href="#" class="text-black p-2"><span class="icon-linkedin"></span></a>
+      </p>
       </div>
+
     </div>
   </div>
+
+
 </div>
-
-<div class="site-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-7 text-center">
-        <div class="site-section-title">
-          <h2>Why Choose Us?</h2>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis maiores quisquam saepe architecto
-          error corporis aliquam. Cum ipsam a consectetur aut sunt sint animi, pariatur corporis, eaque,
-          deleniti cupiditate officia.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 col-lg-4">
-        <a href="#" class="service text-center">
-          <span class="icon flaticon-house"></span>
-          <h2 class="service-heading">Research Subburbs</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex
-            odio molestia.</p>
-          <p><span class="read-more">Read More</span></p>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a href="#" class="service text-center">
-          <span class="icon flaticon-sold"></span>
-          <h2 class="service-heading">Sold Houses</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex
-            odio molestia.</p>
-          <p><span class="read-more">Read More</span></p>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <a href="#" class="service text-center">
-          <span class="icon flaticon-camera"></span>
-          <h2 class="service-heading">Security Priority</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt iure qui natus perspiciatis ex
-            odio molestia.</p>
-          <p><span class="read-more">Read More</span></p>
-        </a>
-      </div>
-    </div>
-  </div>
 </div>
-
-
+</div>
 <footer class="site-footer">
   <div class="container">
     <div class="row">
