@@ -35,7 +35,6 @@ public class ReservationServiceImpl implements ReservationService {
     public int save(SaveNewClientReservationDTO request) {
 
         Client newClient = new Client();
-        newClient.setId(request.getClient().getId());
         newClient.setName(request.getClientName());
         newClient.setEmail(request.getClientEmail());
         newClient.setPhoneNumber(request.getPhoneNumber());

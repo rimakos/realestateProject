@@ -1,4 +1,4 @@
-package com.example.demo.controller.thymeleafController;
+package com.example.demo.controller;
 
 import com.example.demo.entity.Banner;
 import com.example.demo.service.banner.BannerService;
