@@ -78,11 +78,19 @@ public class ReservationServiceImpl implements ReservationService {
 //        return newReservation.getId();
 //    }
 //
-//    @Override
-//    public void deleteById(int theId) {
-//        Reservation reservationEntity = reservationRepository.findById(theId).orElseThrow(() -> new IllegalArgumentException());
-//        reservationRepository.delete(reservationEntity);
-//    }
+
+
+    @Override
+    public Reservation findById(int theId) {
+        return reservationRepository.findById(theId).orElse(null);
+    }
+
+    @Override
+    public void deleteById(int theId) {
+        Reservation reservationEntity = reservationRepository.findById(theId).orElseThrow(() ->
+                new IllegalArgumentException());
+        reservationRepository.delete(reservationEntity);
+    }
 
 
 }

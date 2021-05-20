@@ -8,7 +8,10 @@ import java.util.List;
 public interface ReservationService {
     List<Reservation> findAll();
 
-
     int save(SaveNewClientReservationDTO request);
-//    int save(SaveReservationRequest request);
+
+
+    Reservation findById(int theId);
+
+    void deleteById(int theId);
 }
