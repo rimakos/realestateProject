@@ -31,7 +31,7 @@ public class ReservationController{
     @PostMapping("/newreservation")
     public int addReservation(@RequestBody @Valid SaveNewClientReservationDTO request) {
         return   reservationService.save(request);
-    }
+    }}
 //    @GetMapping("/{id}")
 //    public ResponseEntity getReservation(@PathVariable int id) {
 //       Reservation reservation= reservationService.findById(id);
@@ -50,5 +50,5 @@ public class ReservationController{
 //    public void deleteReservation(@PathVariable("id") int id) {
 //        reservationService.deleteById(id);
 //    }
-}
+//}
 
