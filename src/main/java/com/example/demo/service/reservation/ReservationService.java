@@ -10,4 +10,5 @@ public interface ReservationService {
 
 
     int save(SaveNewClientReservationDTO request);
+//    int save(SaveReservationRequest request);
 }

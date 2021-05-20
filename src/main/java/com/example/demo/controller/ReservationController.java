@@ -41,8 +41,8 @@ public class ReservationController{
 //        return ResponseEntity.ok(reservation);
 //    }
 //
-//    @PostMapping
-//    public int save(@RequestBody @Valid SaveReservationRequest request) {
+// @PostMapping
+//    public int save2(@RequestBody @Valid SaveReservationRequest request) {
 //        return reservationService.save(request);
 //    }
 //
