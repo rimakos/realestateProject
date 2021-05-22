@@ -93,16 +93,14 @@
 <div class="site-section site-section-sm pb-0">
     <div class="container">
         <div class="row">
-            <form class="form-search col-md-12" style="margin-top: -100px;">
+            <form class="form-search col-md-12" style="margin-top: -100px;" action="/searchbox" method="get">
                 <div class="row  align-items-end">
                     <div class="col-md-3">
                         <label for="list-types">Listing Types</label>
                         <div class="select-wrap">
                             <span class="icon icon-arrow_drop_down"></span>
-                            <select name="list-types" id="list-types" class="form-control d-block rounded-0">
-                                <option value="">Condo</option>
-                                <option value="">Commercial Building</option>
-                                <option value="">Land Property</option>
+                            <select name="id" id="list-types" class="form-control d-block rounded-0">
+                                <option th:each="elem : ${categories}" th:value="${elem.id}"th:text="${elem.name}"></option>
                             </select>
                         </div>
                     </div>
@@ -110,10 +108,9 @@
                         <label for="offer-types">Offer Type</label>
                         <div class="select-wrap">
                             <span class="icon icon-arrow_drop_down"></span>
-                            <select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
-                                <option value="">For Sale</option>
-                                <option value="">For Rent</option>
-                                <option value="">For Lease</option>
+                            <select name="status" id="offer-types" class="form-control d-block rounded-0">
+                                <option value="Sale">For Sale</option>
+                                <option value="Rent">For Rent</option>
                             </select>
                         </div>
                     </div>
@@ -134,19 +131,9 @@
                     </div>
                     <div class="ml-auto d-flex align-items-center">
                         <div>
-                            <a href="#" class="view-list px-3 border-right active">All</a>
-                            <a href="#" class="view-list px-3 border-right">Rent</a>
-                            <a href="#" class="view-list px-3">Sale</a>
-                        </div>
-
-
-                        <div class="select-wrap">
-                            <span class="icon icon-arrow_drop_down"></span>
-                            <select class="form-control form-control-sm d-block rounded-0">
-                                <option value="">Sort by</option>
-                                <option value="">Price Ascending</option>
-                                <option value="">Price Descending</option>
-                            </select>
+                            <a href="/view-list" class="view-list px-3 border-right active">All</a>
+                            <a href="/rent" class="view-list px-3 border-right">Rent</a>
+                            <a href="/buy" class="view-list px-3">Sale</a>
                         </div>
                     </div>
                 </div>
@@ -159,9 +146,9 @@
 <div class="site-section site-section-sm bg-light">
     <div class="container">
         <div class="row mb-5">
-            <div th:each="elem : ${properties}" class="col-md-6 col-lg-4 mb-4">
+            <div th:each="elem : ${propertiesFeatured}" class="col-md-6 col-lg-4 mb-4">
                 <div class="property-entry h-100">
-                    <a href="property-details.html" class="property-thumbnail">
+                    <a th:href="'/showreservationsform/'+${elem.id}" class="property-thumbnail">
                         <div class="offer-type-wrap">
                             <span th:if="elem.propertyStatus==0" class="offer-type bg-danger">Sale</span>
                             <span th:if="elem.propertyStatus==1" class="offer-type bg-success">Rent</span>

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservations")
-!!!!public class ReservationController {
+public class ReservationController {
 
     private final ReservationService reservationService;
 
@@ -30,10 +30,10 @@ import java.util.List;
         return reservationService.findAll();
     }
 
-    @PostMapping("/newreservation")
-    public int addReservation(@RequestBody @Valid SaveNewClientReservationDTO request) {
-        return reservationService.save(request);
-    }
+        @PostMapping("/newreservation")
+        public int addReservation(@RequestBody @Valid SaveNewClientReservationDTO request) {
+            return reservationService.save(request);
+        }
 
     @GetMapping("/{id}")
     public ResponseEntity getReservation(@PathVariable int id) {

@@ -17,4 +17,10 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
     @Query("select s from Property s where s.propertyStatus=:status")
     List<Property> findPropertiesByStatus (@Param("status")PropertyStatus status);
 
+    @Query("select p from Property  p where  p.Featured = true")
+    List<Property>findByFeatured();
+
+    @Query("select p from Property p where p.categoryId=:id and p.propertyStatus=:status")
+    List<Property>searchBox(@Param("id") int id, @Param("status")PropertyStatus status) ;
+
 }

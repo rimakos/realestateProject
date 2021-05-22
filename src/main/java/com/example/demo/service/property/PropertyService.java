@@ -11,11 +11,16 @@ public interface PropertyService {
 
     List<Property> findPropertiesByCategory(int categoryId);
 
-    List<Property> findPropertiesByStatus (PropertyStatus status);
+    List<Property> findPropertiesByStatus(PropertyStatus status);
 
     Property findById(int theId);
 
     int save(SavePropertyRequest request);
 
     void deleteById(int theId);
+
+    List<Property> findByFeatured();
+
+    List<Property> searchBox(int id, PropertyStatus propertyStatus);
+
 }
