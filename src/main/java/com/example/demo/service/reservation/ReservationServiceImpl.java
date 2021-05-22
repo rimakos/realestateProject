@@ -26,12 +26,12 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    @Transactional
+
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
     }
 
-
+    @Transactional
     public int save(SaveNewClientReservationDTO request) {
 
         Client newClient = new Client();

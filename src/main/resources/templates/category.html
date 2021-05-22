@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500">
     <link rel="stylesheet" href="/fonts/icomoon/style.css">
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="/css/fl-bigmug-line.css">
     <link rel="stylesheet" href="/css/aos.css">
     <link rel="stylesheet" href="/css/style.css">
-    
+
   </head>
   <body>
-  
+
   <div class="site-loader"></div>
-  
+
   <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -68,42 +68,27 @@
                 </ul>
               </nav>
             </div>
-           
+
 
           </div>
         </div>
       </div>
     </div>
 
-    <div class="slide-one-item home-slider owl-carousel">
+  <div class="slide-one-item home-slider owl-carousel">
 
-      <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-10">
-              <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">For Rent</span>
-              <h1 class="mb-2">871 Crenshaw Blvd</h1>
-              <p class="mb-5"><strong class="h2 text-success font-weight-bold">$2,250,500</strong></p>
-              <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">See Details</a></p>
-            </div>
+    <div th:each="elem : ${banners}" class="site-blocks-cover overlay"
+         th:style="'background-image:url(/api/files/' + ${elem.photo} + ');'"
+         data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+          <div class="col-md-10">
+            <h1 class="mb-2" th:text="${elem.name}"></h1>
           </div>
         </div>
-      </div>  
-
-      <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-            <div class="col-md-10">
-              <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">For Sale</span>
-              <h1 class="mb-2">625 S. Berendo St</h1>
-              <p class="mb-5"><strong class="h2 text-success font-weight-bold">$1,000,500</strong></p>
-              <p><a href="#" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">See Details</a></p>
-            </div>
-          </div>
-        </div>
-      </div>  
-
+      </div>
     </div>
+  </div>
 
 
     <div class="site-section site-section-sm pb-0">
@@ -151,7 +136,7 @@
               </div>
             </div>
           </form>
-        </div>  
+        </div>
 
         <div class="row">
           <div class="col-md-12">
@@ -159,7 +144,7 @@
               <div class="mr-auto">
                 <a href="index.html" class="icon-view view-module active"><span class="icon-view_module"></span></a>
                 <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a>
-                
+
               </div>
               <div class="ml-auto d-flex align-items-center">
                 <div>
@@ -181,7 +166,7 @@
             </div>
           </div>
         </div>
-       
+
       </div>
     </div>
 
@@ -192,7 +177,7 @@
           <div class="row mb-5">
             <div th:each="elem : ${properties}" class="col-md-6 col-lg-4 mb-4">
               <div class="property-entry h-100">
-                <a href="property-details.html" class="property-thumbnail">
+                <a href="/property-details" class="property-thumbnail">
                   <div class="offer-type-wrap">
                     <span th:if="elem.propertyStatus==0" class="offer-type bg-danger">Sale</span>
                     <span th:if="elem.propertyStatus==1" class="offer-type bg-success">Rent</span>
@@ -231,21 +216,6 @@
             </div>
           </div>
 
-
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="site-pagination">
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <span>...</span>
-              <a href="#">10</a>
-            </div>
-          </div>  
-        </div>
-        
       </div>
     </div>
 
@@ -258,8 +228,8 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque, consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis, minima minus odio!</p>
             </div>
 
-            
-            
+
+
           </div>
           <div class="col-lg-4 mb-5 mb-lg-0">
             <div class="row mb-5">
@@ -297,10 +267,10 @@
                   <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
                 </div>
 
-            
+
 
           </div>
-          
+
         </div>
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
@@ -310,7 +280,7 @@
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>
-          
+
         </div>
       </div>
     </footer>
@@ -331,6 +301,6 @@
   <script src="/js/aos.js"></script>
 
   <script src="/js/main.js"></script>
-    
+
   </body>
 </html>

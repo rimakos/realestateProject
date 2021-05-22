@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface BannerService {
 
+
      List<Banner> findAll();
      int save(Banner banner);
      Banner findById(int id);

@@ -90,4 +90,14 @@ public class PropertyServiceImpl implements PropertyService {
         propertyRepository.delete(property);
     }
 
+    @Override
+    public List<Property> findByFeatured() {
+        return propertyRepository.findByFeatured();
+    }
+
+
+    @Override
+    public List<Property>searchBox(int id,PropertyStatus propertyStatus){
+        return propertyRepository.searchBox(id,propertyStatus);
+    }
 }
